@@ -1,67 +1,81 @@
 import { useState } from "react";
-import { View, Text, TouchableOpacity, Image } from "react-native";
-import { styled } from "nativewind";
+import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import QuestionOne from "./questionOne";
+import { LinearGradient } from 'expo-linear-gradient';
 import "../global.css"
+import LoginScreen from "./logIn";
 
 const roles = [
-    { id: "patient", label: "Patient", icon: "❤️", bg: "bg-yellow-200" },
-    { id: "caregiver", label: "Caregiver", icon: "🤝", bg: "bg-white" },
+    { id: "patient", label: "Patient", icon: "❤️" },
+    { id: "caregiver", label: "Caregiver", icon: "🤝" },
 ];
 
 export default function RoleSelectionScreen() {
-    const [selectedRole, setSelectedRole] = useState(null);
     const [error, setError] = useState("");
     const navigation = useNavigation();
 
-    const handleConfirm = () => {
-        if (!selectedRole) {
-            setError("Please select a role before proceeding");
+    const handleRoleSelect = (roleId) => {
+        setError("");
+        if (roleId === "patient") {
+            navigation.navigate("logIn"); // Changed to navigate to login page
         } else {
-            setError("");
-            if (selectedRole === "patient") {
-                navigation.navigate("questionOne");
-            } else {
-                navigation.navigate("PatientID");
-            }
+            navigation.navigate("PatientID"); // Or your caregiver destination
         }
     };
 
     return (
-        <View className="flex-1 items-center justify-center bg-sky-200 p-4">
-            {/* Logo */}
-            <Image
-                source={require("../assets/images/welcomePage.png")}
-                className="w-40 h-20 mb-6"
-                resizeMode="contain"
+        <View className="flex-1 bg-white">
+            {/* Gradient Header */}
+            <LinearGradient
+                colors={['#ffffff', '#f8e5ff']}
+                className="h-64 w-full absolute top-0 rounded-b-3xl"
             />
 
-            {/* Title */}
-            <Text className="text-xl font-bold mb-4">Select your role</Text>
+            <View className="flex-1" contentContainerStyle={{ flexGrow: 1 }}>
+                <View className="flex-1 items-center pt-16 px-6 pb-8">
+                    {/* Logo */}
+                    <View className="w-64 h-64 mt-16 mb-6 rounded-3xl overflow-hidden bg-white ">
+                        <Image
+                            source={require("../assets/images/logo.png")}
+                            className="w-full h-full"
+                            resizeMode="contain"
+                        />
+                    </View>
 
-            {/* Role Options */}
-            {roles.map((role) => (
-                <TouchableOpacity
-                    key={role.id}
-                    className={`w-60 py-4 mb-3 rounded-2xl border border-gray-300 flex-row items-center justify-center ${selectedRole === role.id ? role.bg : "bg-gray-100"
-                        }`}
-                    onPress={() => setSelectedRole(role.id)}
-                >
-                    <Text className="text-lg">{role.icon} {role.label}</Text>
-                </TouchableOpacity>
-            ))}
 
-            {/* Error Message */}
-            {error ? <Text className="text-red-500 mt-2">{error}</Text> : null}
+                    {/* Title */}
+                    <Text className="text-2xl font-bold mb-8 mt-2 text-gray-800 text-center">Select your role</Text>
 
-            {/* Confirm Button */}
-            <TouchableOpacity
-                className="mt-4 bg-white px-6 py-3 rounded-xl"
-                onPress={handleConfirm}
-            >
-                <Text className="text-black font-semibold">Confirm Role</Text>
-            </TouchableOpacity>
+                    {/* Role Buttons with Different Colors */}
+                    <View className="w-full mb-6 mt-6justify-center items-center">
+                        {/* Patient Button */}
+                        <TouchableOpacity
+                            className="w-80 py-4 mb-8 rounded-xl flex-row justify-center items-center bg-[#DBEAFE]"
+                            onPress={() => handleRoleSelect(roles[0].id)}
+                        >
+                            <Text className="text-xl mr-3">{roles[0].icon}</Text>
+                            <Text className="text-lg" style={{ color: roles[0].textColor }}>
+                                {roles[0].label}
+                            </Text>
+                        </TouchableOpacity>
+
+                        {/* Caregiver Button */}
+                        <TouchableOpacity
+                            className="w-80 py-4 rounded-xl flex-row content-center justify-center items-center bg-[#FCE7F3]"
+                            onPress={() => handleRoleSelect(roles[1].id)}
+                        >
+                            <Text className="text-xl mr-3">{roles[1].icon}</Text>
+                            <Text className="text-lg" style={{ color: roles[1].textColor }}>
+                                {roles[1].label}
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+
+                    {/* Error Message */}
+                    {error ? <Text className="text-red-500 mb-4 text-center">{error}</Text> : null}
+                </View>
+
+            </View>
         </View>
     );
 }

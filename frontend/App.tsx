@@ -1,7 +1,7 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import WelcomePage from "components/welcomePage";
+import LandingPage from "components/landingPage";
 import LoginScreen from "components/logIn";
 import SignUpScreen from "components/signUp";
 import questionOne from "components/questionOne";
@@ -16,7 +16,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Welcome" component={WelcomePage} />
+        <Stack.Screen name="landing" component={LandingPage} />
         <Stack.Screen name="logIn" component={LoginScreen} />
         <Stack.Screen name="home" component={HomePage} />
         <Stack.Screen name="signUp" component={SignUpScreen} />

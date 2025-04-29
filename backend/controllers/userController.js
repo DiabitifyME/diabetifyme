@@ -72,7 +72,7 @@ const register = async (req, res) => {
 // Login user
 // (We rely on Supabase Auth to validate the password and create a session)
 const login = async (req, res) => {
-  
+
   try {
     const { email, password } = req.body;
 
