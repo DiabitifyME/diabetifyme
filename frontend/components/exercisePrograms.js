@@ -62,10 +62,12 @@ const ExerciseProgramScreen = () => {
                 {/* Header with Avatar */}
                 <View className="flex-row justify-between items-center mb-6">
                     <Text className="text-3xl font-bold text-black">Exercise program</Text>
-                    <Image
-                        source={require('../assets/images/martina.jpg')} // Replace with actual avatar image
-                        className="w-10 h-10 rounded-full"
-                    />
+                    <TouchableOpacity onPress={() => navigation.navigate("profilepage")}>
+                        <Image
+                            source={require('../assets/images/martina.jpg')} // Replace with actual avatar image
+                            className="w-10 h-10 rounded-full"
+                        />
+                    </TouchableOpacity>
                 </View>
 
                 {/* Workouts Label */}

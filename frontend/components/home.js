@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, ScrollView, Image } from "react-native";
+import { SafeAreaView, View, Text, TextInput, TouchableOpacity, ScrollView, Image } from "react-native";
 import { Feather, Ionicons, AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import "nativewind";
 import "../global.css";
-import { SafeAreaView } from "react-native-safe-area-context";
+import ProfileScreen from "./profilepage";
 
 const HomePage = () => {
     const [isSearching, setIsSearching] = useState(false);
@@ -14,7 +14,7 @@ const HomePage = () => {
 
     return (
         <SafeAreaView className="flex-1 bg-white">
-            <ScrollView className="px-4 pt-4" contentContainerStyle={{ paddingBottom: 100 }}>
+            <ScrollView className="flex-1 bg-white px-5 pt-10">
 
                 {/* Logo Section */}
                 <View className="items-start mb-7 self-start right-16">
@@ -70,8 +70,7 @@ const HomePage = () => {
                         </TouchableOpacity>
 
                         <TouchableOpacity className="bg-[#FFF3CD] w-28 h-20 rounded-xl justify-center items-center px-1"
-                            onPress={() => navigation.navigate('welcomeExercise')}
-                        >
+                            onPress={() => navigation.navigate('welcomeExercise')}>
                             <Text className="text-center font-medium text-md text-gray-800 leading-tight tracking-tight">
                                 Exercise{"\n"}Programs
                             </Text>
@@ -300,7 +299,7 @@ const HomePage = () => {
 
 
                 {/*FAQs Section */}
-                <View className="mt-9">
+                <View className="mt-9 pb-20">
                     <View className="flex-row justify-between items-center px-1 mb-5">
                         <Text className="text-medium font-semibold text-black">FAQs</Text>
 
@@ -330,8 +329,11 @@ const HomePage = () => {
                 </View>
 
 
+
+
             </ScrollView>
-            <View className="bg-white p-2 mt-9 mx-4 mb-6 rounded-3xl flex-row justify-around items-center ">
+
+            <View className="bg-white p-2 mt-4 mx-4 mb-3 rounded-3xl flex-row justify-around items-center ">
                 {/* Home Icon */}
                 <TouchableOpacity className="items-center justify-center"
                 >
@@ -348,12 +350,13 @@ const HomePage = () => {
                 </TouchableOpacity>
 
                 {/* Notifications Icon */}
-                <TouchableOpacity className="items-center justify-center">
+                <TouchableOpacity className="items-center justify-center" onPress={() => navigation.navigate("notifications")}>
                     <View className="p-3 rounded-full bg-white-100">
                         <Ionicons name="notifications-outline" size={28} color="black" />
                     </View>
                 </TouchableOpacity>
             </View>
+
         </SafeAreaView>
     );
 };

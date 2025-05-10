@@ -23,6 +23,18 @@ import PilatesScreen from "components/pilates";
 import FullBodyScreen from "components/fullBody";
 import StretchingScreen from "components/stretching";
 import SubscribeScreen from "components/subscribtionExercise";
+import ProfileScreen from "components/profilepage";
+import MyProfileScreen from "components/myprofile";
+import CareConnectScreen from "components/careconnect";
+import SettingsScreen from "components/settings";
+import NotificationsScreen from "components/notification";
+import AccountDataScreen from "components/accountdata";
+import NutritionWelcomeScreen from "components/welcomenutrition";
+import NutritionProgramScreen from "components/nutritionprogram";
+import BreakfastScreen from "components/breakfast";
+import LunchScreen from "components/lunch";
+import DinnerScreen from "components/dinner";
+import NutritionSubscribeScreen from "components/subscribe";
 
 const Stack = createStackNavigator();
 
@@ -51,6 +63,18 @@ export default function App() {
         <Stack.Screen name="fullBody" component={FullBodyScreen} />
         <Stack.Screen name="stretching" component={StretchingScreen} />
         <Stack.Screen name="subscribtionExercise" component={SubscribeScreen} />
+        <Stack.Screen name="profilepage" component={ProfileScreen} />
+        <Stack.Screen name="myprofile" component={MyProfileScreen} />
+        <Stack.Screen name="careconnect" component={CareConnectScreen} />
+        <Stack.Screen name="settings" component={SettingsScreen} />
+        <Stack.Screen name="notification" component={NotificationsScreen} />
+        <Stack.Screen name="accountdata" component={AccountDataScreen} />
+        <Stack.Screen name="welcomenutrition" component={NutritionWelcomeScreen} />
+        <Stack.Screen name="nutritionprogram" component={NutritionProgramScreen} />
+        <Stack.Screen name="breakfast" component={BreakfastScreen} />
+        <Stack.Screen name="lunch" component={LunchScreen} />
+        <Stack.Screen name="dinner" component={DinnerScreen} />
+        <Stack.Screen name="subscribe" component={NutritionSubscribeScreen} />
 
       </Stack.Navigator>
     </NavigationContainer>

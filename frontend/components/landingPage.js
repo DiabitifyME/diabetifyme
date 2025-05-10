@@ -42,7 +42,7 @@ export default function LandingPage() {
                 >
                     <Image
                         source={require('../assets/images/logo.png')}
-                        className="w-64 h-64 mt-6"
+                        className="w-64 h-64 mt-2"
                         resizeMode="contain"
                     />
 
