@@ -7,7 +7,9 @@ import "nativewind";
 import { LinearGradient } from 'expo-linear-gradient';
 import "../global.css";
 
-const SignUpScreen = () => {
+
+
+const SignUpScreenCare = () => {
     const navigation = useNavigation();
     const [fullName, setFullName] = useState("");
     const [mobileNumber, setMobileNumber] = useState("");
@@ -139,7 +141,7 @@ const SignUpScreen = () => {
 
                         {/* Sign Up Button */}
                         <TouchableOpacity
-                            onPress={() => navigation.navigate("questionOne")}
+                            onPress={() => navigation.navigate("selectPatient")}
                             className="bg-[#E8E6FF] rounded-lg py-3 items-center mb-6">
                             <Text className="text-lg font-bold text-black">Sign Up</Text>
                         </TouchableOpacity>
@@ -164,7 +166,7 @@ const SignUpScreen = () => {
                         {/* Sign In Link */}
                         <Text className="text-center text-sm">
                             Have an Account?{" "}
-                            <Text className="text-[#ABA5ED] font-bold" onPress={() => navigation.navigate("logIn")}>
+                            <Text className="text-[#ABA5ED] font-bold" onPress={() => navigation.navigate("logInCareGiver")}>
                                 Sign in
                             </Text>
                         </Text>
@@ -193,4 +195,4 @@ const InputField = ({ icon, ...props }) => (
     </View>
 );
 
-export default SignUpScreen;
+export default SignUpScreenCare;

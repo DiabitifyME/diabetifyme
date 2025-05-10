@@ -61,7 +61,7 @@ const QuestionThree = () => {
                             >
                                 <Text className="text-lg">{item}</Text>
                                 <View
-                                    className={`w-5 h-5 rounded-full border-2 ${selectedOptions.includes(item) ? "border-[#007AFF] bg-[#E8E6FF]" : "border-gray-500"
+                                    className={`w-5 h-5 rounded-full border-2 ${selectedOptions.includes(item) ? "border-gray-500 bg-[#C98AAF]" : "border-gray-500"
                                         }`}
                                 />
                             </TouchableOpacity>

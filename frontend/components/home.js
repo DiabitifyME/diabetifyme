@@ -1,19 +1,28 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, SafeAreaView } from "react-native";
-import { Feather } from "@expo/vector-icons";
+import { View, Text, TextInput, TouchableOpacity, ScrollView, Image } from "react-native";
+import { Feather, Ionicons, AntDesign } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 import "nativewind";
 import "../global.css";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const HomePage = () => {
     const [isSearching, setIsSearching] = useState(false);
     const [searchText, setSearchText] = useState("");
+    const navigation = useNavigation(); // ✅ Use the hook to get the navigation object
+
 
     return (
         <SafeAreaView className="flex-1 bg-white">
-            <ScrollView className="flex-1 bg-white px-5 pt-10">
+            <ScrollView className="px-4 pt-4" contentContainerStyle={{ paddingBottom: 100 }}>
+
+                {/* Logo Section */}
+                <View className="items-start mb-7 self-start right-16">
+
+                </View>
 
                 {/* Greeting + Search + Profile */}
-                <View className="flex-row justify-between items-center mb-4 mt-2">
+                <View className="flex-row justify-between items-center mb-4">
                     <View>
                         <Text className="text-2xl font-medium text-gray-800">Hello!</Text>
                         <Text className="text-2xl font-bold text-gray-900 -mt-1">Martina Jackob</Text>
@@ -24,7 +33,7 @@ const HomePage = () => {
                         <TouchableOpacity onPress={() => setIsSearching(!isSearching)}>
                             <Feather name="search" size={18} color="black" />
                         </TouchableOpacity>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate("profilepage")}>
                             <Image source={require("../assets/images/martina.jpg")} className="w-10 h-10 rounded-full" />
                         </TouchableOpacity>
                     </View>
@@ -52,26 +61,30 @@ const HomePage = () => {
                 </View>
                 <ScrollView horizontal showsHorizontalScrollIndicator={false} className="pl-0 pr-2">
                     <View className="flex-row gap-x-4 justify-center px-1 mb-4">
-                        <TouchableOpacity className="bg-blue-100 w-28 h-20 rounded-xl justify-center items-center px-1">
-                            <Text className="text-center font-medium text-[10px] text-gray-800 leading-tight tracking-tight">
+                        <TouchableOpacity className="bg-blue-100 w-28 h-20 rounded-xl justify-center items-center px-1"
+                            onPress={() => navigation.navigate('welcomenutrition')}
+                        >
+                            <Text className="text-center font-medium text-md text-gray-800 leading-tight tracking-tight">
                                 Nutrition{"\n"}Programs
                             </Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity className="bg-yellow-100 w-28 h-20 rounded-xl justify-center items-center px-1">
-                            <Text className="text-center font-medium text-[10px] text-gray-800 leading-tight tracking-tight">
+                        <TouchableOpacity className="bg-[#FFF3CD] w-28 h-20 rounded-xl justify-center items-center px-1"
+                            onPress={() => navigation.navigate('welcomeExercise')}
+                        >
+                            <Text className="text-center font-medium text-md text-gray-800 leading-tight tracking-tight">
                                 Exercise{"\n"}Programs
                             </Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity className="bg-purple-100 w-28 h-20 rounded-xl justify-center items-center px-1">
-                            <Text className="text-center font-medium text-[10px] text-gray-800 leading-tight tracking-tight">
+                            <Text className="text-center font-medium text-md text-gray-800 leading-tight tracking-tight">
                                 Symptom{"\n"}Checker
                             </Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity className="bg-pink-100 w-28 h-20 rounded-xl justify-center items-center px-1">
-                            <Text className="text-center font-medium text-[10px] text-gray-800 leading-tight tracking-tight">
+                            <Text className="text-center font-medium text-md text-gray-800 leading-tight tracking-tight">
                                 Doctor{"\n"}Matching
                             </Text>
                         </TouchableOpacity>
@@ -99,7 +112,7 @@ const HomePage = () => {
                     <ScrollView horizontal showsHorizontalScrollIndicator={false} className="pl-0 pr-2">
                         <View className="flex-row gap-x-4">
                             {/* Appointment Card */}
-                            <View className="bg-[#FDF4E7] rounded-3xl px-5 py-4 w-35 items-center shadow-sm">
+                            <View className="bg-[#FFF3CD] rounded-3xl px-5 py-4 w-35 items-center ">
                                 <Image
                                     source={require('../assets/images/1st dr.jpg')}
                                     className="h-14 w-12 rounded-full mb-2"
@@ -108,7 +121,7 @@ const HomePage = () => {
                                 <Text className="text-xs text-gray-700 text-center mt-1">19/3 8:30 PM</Text>
                             </View>
 
-                            <View className="bg-[#FDF4E7] rounded-3xl px-5 py-4 w-35 items-center shadow-sm">
+                            <View className="bg-[#FFF3CD] rounded-3xl px-5 py-4 w-35 items-center ">
                                 <Image
                                     source={require('../assets/images/2nd dr.jpg')}
                                     className="h-14 w-12 rounded-full mb-3"
@@ -117,7 +130,7 @@ const HomePage = () => {
                                 <Text className="text-xs text-gray-700 text-center mt-1">9/12 4:30 PM</Text>
                             </View>
 
-                            <View className="bg-[#FDF4E7] rounded-3xl px-5 py-4 w-35 items-center shadow-sm">
+                            <View className="bg-[#FFF3CD] rounded-3xl px-5 py-4 w-35 items-center">
                                 <Image
                                     source={require('../assets/images/3rd dr.jpg')}
                                     className="h-14 w-12 rounded-full mb-2"
@@ -142,7 +155,7 @@ const HomePage = () => {
                         <View className="flex-row gap-x-4 mt-2">
 
                             {/* Reminder Card 1 */}
-                            <View className="bg-[#E6F7FF] rounded-3xl px-5 py-4 w-45">
+                            <View className="bg-blue-100 rounded-3xl px-5 py-4 w-45">
 
                                 <Image
                                     source={require('../assets/images/pills.png')}  // << your pills image here
@@ -154,7 +167,7 @@ const HomePage = () => {
                             </View>
 
                             {/* Reminder Card 2 */}
-                            <View className="bg-[#FFF5E6] rounded-3xl px-5 py-4 w-45">
+                            <View className="bg-pink-100 rounded-3xl px-5 py-4 w-45">
                                 <Image
                                     source={require('../assets/images/pills.png')}
                                     className="h-10 w-10 mb-2 self-center"
@@ -188,7 +201,7 @@ const HomePage = () => {
 
                     <ScrollView horizontal showsHorizontalScrollIndicator={false} className="pl-1 pr-3">
                         <View className="flex-row gap-x-4">
-                            <View className="bg-[#D8F3DC] rounded-2xl px-4 py-4 w-50">
+                            <View className="bg-[#E6F7FF]  rounded-2xl px-4 py-4 w-50">
                                 <Text className="text-sm font-semibold text-black mb-1">💧 Stay Hydrated</Text>
                                 <Text className="text-xs text-gray-700">Drink at least 8 cups of water daily to support blood sugar balance.</Text>
                                 <Text className="text-xs text-gray-700">Drink at least 8 cups of water daily to support blood sugar balance.</Text>
@@ -200,14 +213,14 @@ const HomePage = () => {
 
                             </View>
 
-                            <View className="bg-[#FFF3CD] rounded-2xl px-4 py-4 w-50">
+                            <View className="bg-[#E6F7FF] rounded-2xl px-4 py-4 w-50">
                                 <Text className="text-sm font-semibold text-black mb-1">🥗 Balanced Meals</Text>
                                 <Text className="text-xs text-gray-700">Include carbs, protein & fiber in each meal for stable glucose levels.</Text>
                                 <Text className="text-xs text-gray-700">Combine complex carbs, lean proteins, and healthy fats in each meal.</Text>
                                 <Text className="text-xs text-gray-700">it Helps stabilize blood sugar levels and provides longer-lasting energy.</Text>
                             </View>
 
-                            <View className="bg-[#E0E7FF] rounded-2xl px-4 py-4 w-50">
+                            <View className="bg-[#E6F7FF] rounded-2xl px-4 py-4 w-50">
                                 <Text className="text-sm font-semibold text-black mb-1">🚶‍♀ Move Daily</Text>
                                 <Text className="text-xs text-gray-700">Light exercise like walking helps boost insulin sensitivity.</Text>
                                 <Text className="text-xs text-gray-700">30 minutes of walking and stretching improves insulin sensitivity.</Text>
@@ -249,7 +262,7 @@ const HomePage = () => {
                                     </View>
 
                                     {/* Story Card 2 */}
-                                    <View className="bg-[#E6F7FF] rounded-2xl p-3 w-72 flex-row items-start">
+                                    <View className="bg-[#E9FFE9] rounded-2xl p-3 w-72 flex-row items-start">
                                         <Image
                                             source={require('../assets/images/jameila.jpg')}
                                             className="w-16 h-16 rounded-full mr-3"
@@ -264,7 +277,7 @@ const HomePage = () => {
                                     </View>
 
                                     {/* Story Card 3 */}
-                                    <View className="bg-[#E9FFE9] rounded-2xl p-3 w-72 flex-row items-start">
+                                    <View className="bg-[#FFF0F0] rounded-2xl p-3 w-72 flex-row items-start">
                                         <Image
                                             source={require('../assets/images/jameila.jpg')}
                                             className="w-16 h-16 rounded-full mr-3"
@@ -287,7 +300,7 @@ const HomePage = () => {
 
 
                 {/*FAQs Section */}
-                <View className="mt-9 mb-16">
+                <View className="mt-9">
                     <View className="flex-row justify-between items-center px-1 mb-5">
                         <Text className="text-medium font-semibold text-black">FAQs</Text>
 
@@ -296,13 +309,13 @@ const HomePage = () => {
                     <ScrollView horizontal showsHorizontalScrollIndicator={false} className="pl-1 pr-3">
                         <View className="flex-row gap-x-4">
                             {/* Reminder Card 1 */}
-                            <View className="bg-[#E6F7FF] rounded-2xl px-4 py-3 w-45">
+                            <View className="bg-pink-100 rounded-2xl px-4 py-3 w-45">
                                 <Text className="text-sm font-semibold text-black mb-1">Type 1 Diabetes</Text>
 
                             </View>
 
                             {/* Reminder Card 2 */}
-                            <View className="bg-[#FFF5E6] rounded-2xl px-4 py-3 w-45">
+                            <View className="bg-[#E9FFE9]  rounded-2xl px-4 py-3 w-45">
                                 <Text className="text-sm font-semibold text-black mb-1">Type 2 Diabetes</Text>
 
                             </View>
@@ -314,41 +327,31 @@ const HomePage = () => {
                             </View>
                         </View>
                     </ScrollView>
-
-
                 </View>
+
+
             </ScrollView>
-
-            <View className="bg-white p-2 mt-9 mx-4 mb-6 rounded-3xl flex-row justify-around items-center shadow-md">
-                <TouchableOpacity className="items-center justify-center">
+            <View className="bg-white p-2 mt-9 mx-4 mb-6 rounded-3xl flex-row justify-around items-center ">
+                {/* Home Icon */}
+                <TouchableOpacity className="items-center justify-center"
+                >
                     <View className="p-2 rounded-full bg-white-100">
-                        <Image
-                            source={require('../assets/images/home icon.png')}
-                            style={{ width: 50, height: 50 }}
-                            resizeMode="contain"
-                        />
+                        <Ionicons name="home-outline" size={28} color="black" />
                     </View>
                 </TouchableOpacity>
 
+                {/* QR Code Icon */}
                 <TouchableOpacity className="items-center justify-center">
-                    <View className="p-3 rounded-full bg-white-100">
-                        <Image
-                            source={require('../assets/images/rings.jpg')}
-                            style={{ width: 35, height: 35 }}
-                            resizeMode="contain"
-                        />
+                    <AntDesign name="qrcode" size={28} color="black" />
+                    <View className="rounded-full bg-white-100">
                     </View>
                 </TouchableOpacity>
 
+                {/* Notifications Icon */}
                 <TouchableOpacity className="items-center justify-center">
                     <View className="p-3 rounded-full bg-white-100">
-                        <Image
-                            source={require('../assets/images/qqq.jpg')}
-                            style={{ width: 35, height: 35 }}
-                            resizeMode="contain"
-                        />
+                        <Ionicons name="notifications-outline" size={28} color="black" />
                     </View>
-
                 </TouchableOpacity>
             </View>
         </SafeAreaView>
