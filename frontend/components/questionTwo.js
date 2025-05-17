@@ -55,7 +55,7 @@ const DiabetesDiagnosisScreen = () => {
                             <AntDesign
                                 name={selectedOption === option ? "checkcircle" : "checkcircleo"}
                                 size={24}
-                                color={selectedOption === option ? "bg-[#E8E6FF]" : "#888"}
+                                color={selectedOption === option ? "#C98AAF" : "#888"}
                             />
                         </TouchableOpacity>
                     ))}

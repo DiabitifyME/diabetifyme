@@ -38,6 +38,9 @@ const QuestionOne = () => {
             />
 
             <View className="flex-1" contentContainerStyle={{ flexGrow: 1 }}>
+                <TouchableOpacity onPress={() => navigation.goBack()} className="absolute top-12 left-5">
+                    <AntDesign name="arrowleft" size={24} color="black" />
+                </TouchableOpacity>
                 <View className="flex-1 pt-16 px-6 pb-8">
                     <View className="relative">
 
@@ -58,7 +61,7 @@ const QuestionOne = () => {
                             <AntDesign
                                 name={selectedType === item.id ? "checkcircle" : "checkcircleo"}
                                 size={24}
-                                color={selectedType === item.id ? "black" : "#888"}
+                                color={selectedType === item.id ? "#C98AAF" : "#888"}
                             />
                         </TouchableOpacity>
                     ))}

@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from 'expo-linear-gradient';
 import "../global.css"
 import LoginScreen from "./logIn";
+import SelectPatient from "./selectPatient";
 
 const roles = [
     { id: "patient", label: "Patient", icon: "❤️" },
@@ -19,7 +20,7 @@ export default function RoleSelectionScreen() {
         if (roleId === "patient") {
             navigation.navigate("logIn"); // Changed to navigate to login page
         } else {
-            navigation.navigate("PatientID"); // Or your caregiver destination
+            navigation.navigate("logInCareGiver"); // Or your caregiver destination
         }
     };
 
