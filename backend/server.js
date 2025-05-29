@@ -13,6 +13,7 @@ const supabase = createClient(
 // Routes
 app.use('/api/symptoms', require('./routes/symptoms'))
 app.use('/api/doctors', require('./routes/doctors'))
+app.use('/api/chatbot', require('./routes/chatbot'));
 
 // Doctor matching route
 const matchRouter = require('./routes/match')
