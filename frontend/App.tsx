@@ -35,6 +35,23 @@ import BreakfastScreen from "components/breakfast";
 import LunchScreen from "components/lunch";
 import DinnerScreen from "components/dinner";
 import NutritionSubscribeScreen from "components/subscribe";
+import PaymentMethod from "components/paymentMethod";
+import DebitCardScreen from "components/debitCard";
+import CreditCardScreen from "components/creditCard";
+import ThanksScreen from "components/ThanksPayment";
+import ServicesScreen from "components/seeAllServices";
+import DoctorMatchingScreen from "components/doctorMatching";
+import SymptomChecker from "components/symptomsChecker";
+import DiabetesEmpowerment from "components/diabetesEmpowerment";
+import EmergencyProtocols from "components/emergencyProtocols";
+import DiabetesAwareness from "components/diabetesAwareness";
+import LocationScreen from "components/Location";
+import MyPlanScreen from "components/MyPlan";
+import PlanSelectionScreen from "components/PlanSelection";
+import RemindersScreen from "components/Reminders";
+import CountryPickerScreen from "components/Country";
+import DataExportScreen from "components/DataExport";
+import AccountDeletionFeedback from "components/DeleteAccount";
 
 const Stack = createStackNavigator();
 
@@ -75,6 +92,23 @@ export default function App() {
         <Stack.Screen name="lunch" component={LunchScreen} />
         <Stack.Screen name="dinner" component={DinnerScreen} />
         <Stack.Screen name="subscribe" component={NutritionSubscribeScreen} />
+        <Stack.Screen name="paymentMethod" component={PaymentMethod} />
+        <Stack.Screen name="debitCard" component={DebitCardScreen} />
+        <Stack.Screen name="creditCard" component={CreditCardScreen} />
+        <Stack.Screen name="ThanksPayment" component={ThanksScreen} />
+        <Stack.Screen name="seeAllServices" component={ServicesScreen} />
+        <Stack.Screen name="doctorMatching" component={DoctorMatchingScreen} />
+        <Stack.Screen name="symptomsChecker" component={SymptomChecker} />
+        <Stack.Screen name="diabetesEmpowerment" component={DiabetesEmpowerment} />
+        <Stack.Screen name="emergencyProtocols" component={EmergencyProtocols} />
+        <Stack.Screen name="diabetesAwareness" component={DiabetesAwareness} />
+        <Stack.Screen name="Location" component={LocationScreen} />
+        <Stack.Screen name="MyPlan" component={MyPlanScreen} />
+        <Stack.Screen name="PlanSelection" component={PlanSelectionScreen} />
+        <Stack.Screen name="Reminders" component={RemindersScreen} />
+        <Stack.Screen name="Country" component={CountryPickerScreen} />
+        <Stack.Screen name="DataExport" component={DataExportScreen} />
+        <Stack.Screen name="DeleteAccount" component={AccountDeletionFeedback} />
 
       </Stack.Navigator>
     </NavigationContainer>

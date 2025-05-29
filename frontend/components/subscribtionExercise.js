@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Ionicons, Feather, FontAwesome, AntDesign, Entypo } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function SubscribeScreen({ navigation }) {
-
     const plans = [
         { label: '1 Week - EGP77.99/week', value: 'weekly' },
         { label: '1 Month - EGP159.99/month', value: 'monthly' },
         { label: '1 Year - EGP1799.99/year', value: 'yearly' },
     ];
+
+    const [selectedPlan, setSelectedPlan] = useState(null);
 
     return (
         <View className="flex-1 bg-white">
@@ -27,47 +28,53 @@ export default function SubscribeScreen({ navigation }) {
                     <Ionicons name="close" size={28} color="black" />
                 </TouchableOpacity>
                 <Text className="text-center text-xl font-bold mt-56 bottom-20">
-                    "Fuel Your Day Right —{"\n"} Premium Exercises Await You!"
+                    Fuel Your Day Right —{"\n"} Premium Exercises Await You!
                 </Text>
             </LinearGradient>
-            <View className="space-y-8">
 
-                <TouchableOpacity className="flex-row justify-between items-center bg-white-100 rounded-xl px-16 py-6 border border-blue-100 mb-12 top-20 self-center ">
-                    <View className="flex-row items-center space-x-2">
-                        <View className="w-8 h-8 rounded-full bg-white full border-2 border-blue-100  absolute -left-10" />
-
-                        <Text className="font-semibold text-base text-gray-600 ml-8 -left-6">1 Week - EGP77.99/week</Text>
-                    </View>
-
-                </TouchableOpacity>
-
-                <TouchableOpacity className="flex-row justify-between items-center bg-white-100 rounded-xl px-12 py-6 border border-blue-100 mb-12 top-20 self-center ">
-                    <View className="flex-row items-center space-x-2">
-                        <View className="w-8 h-8 rounded-full bg-white full border-2 border-blue-100  absolute -left-6" />
-                        <Text className="font-semibold text-base text-gray-600 ml-6">1 Month - EGP159.99/month</Text>
-                    </View>
-                </TouchableOpacity>
-
-                <TouchableOpacity className="flex-row justify-between items-center bg-white-100 rounded-xl px-16 py-6 border border-blue-100 mb-12 top-20 self-center ">
-                    <View className="flex-row items-center space-x-2">
-                        <View className="w-8 h-8 rounded-full bg-white full border-2 border-blue-100  absolute -left-10" />
-                        <Text className="font-semibold text-base text-gray-600 ml-6 -left-4">1 Year - EGP1799.99/year</Text>
-                    </View>
-                </TouchableOpacity>
-
-
-
+            <View className="space-y-8 mt-20">
+                {plans.map((plan, index) => {
+                    const isSelected = selectedPlan === plan.value;
+                    return (
+                        <TouchableOpacity
+                            key={plan.value}
+                            className={`flex-row justify-between items-center rounded-xl px-12 py-6 border mb-12 self-center ${isSelected ? 'border-blue-400 bg-[#F7F1D7]' : 'border-blue-100 bg-white'
+                                }`}
+                            style={{ width: '80%' }}
+                            onPress={() => setSelectedPlan(plan.value)}
+                            activeOpacity={0.8}
+                        >
+                            <View className="flex-row items-center">
+                                <View
+                                    className={`w-6 h-6 rounded-full border-2 mr-4 flex items-center justify-center ${isSelected ? 'border-blue-700' : 'border-blue-300'
+                                        }`}
+                                >
+                                    {isSelected && (
+                                        <View className="w-3 h-3 rounded-full bg-[#FFF3CD]" />
+                                    )}
+                                </View>
+                                <Text className={`font-semibold text-base ${isSelected ? 'text-gray-700' : 'text-gray-600'}`}>
+                                    {plan.label}
+                                </Text>
+                            </View>
+                        </TouchableOpacity>
+                    );
+                })}
             </View>
-            <TouchableOpacity className="flex-row justify-between items-center bg-[#FFF3CD] rounded-xl px-24 py-6 mb-12 top-20 self-center ">
-                <View className="flex-row items-center space-x-2">
-                    <Text className="font-semibold text-xl text-gray-900 ml-2 text-center">continue</Text>
-                </View>
+
+            <TouchableOpacity
+                className="flex-row justify-center items-center bg-[#FFF3CD] rounded-xl px-24 py-6 mb-12 self-center"
+                style={{ width: '80%' }}
+                onPress={() => {
+                    if (selectedPlan) {
+                        navigation.navigate('paymentMethod', { plan: selectedPlan });
+                    } else {
+                        alert('Please select a subscription plan.');
+                    }
+                }}
+            >
+                <Text className="font-semibold text-xl text-gray-900 text-center">continue</Text>
             </TouchableOpacity>
         </View>
-
-
-
-
-
     );
 }

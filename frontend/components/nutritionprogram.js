@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, ScrollView, SafeAreaView } from 'react-native';
 import { Ionicons, AntDesign } from "@expo/vector-icons";
+import Animated, { BounceIn } from 'react-native-reanimated';
+import { LinearGradient } from 'expo-linear-gradient';
 
 
 const NutritionProgramScreen = ({ navigation }) => {
@@ -73,32 +75,37 @@ const NutritionProgramScreen = ({ navigation }) => {
                 </TouchableOpacity>
 
             </ScrollView>
-            <View className="bg-white p-2 mt-2 mx-4 mb-2 rounded-3xl flex-row justify-around items-center">
-
-
-
+            <View className="bg-white p-2 mt-4 mx-4 mb-3 rounded-3xl flex-row justify-around items-center ">
                 {/* Home Icon */}
-                <TouchableOpacity className="items-center justify-center"
-                    onPress={() => navigation.navigate('home')}
+                <TouchableOpacity className="items-center justify-center " onPress={() => navigation.navigate("home")}
                 >
                     <View className="p-2 rounded-full bg-white-100">
                         <Ionicons name="home-outline" size={28} color="black" />
                     </View>
                 </TouchableOpacity>
 
-                {/* QR Code Icon */}
-                <TouchableOpacity className="items-center justify-center">
-                    <AntDesign name="qrcode" size={28} color="black" />
-                    <View className="rounded-full bg-white-100">
-                    </View>
-                </TouchableOpacity>
-
                 {/* Notifications Icon */}
-                <TouchableOpacity className="items-center justify-center" onPress={() => navigation.navigate('notifications')}>
+                <TouchableOpacity className="items-center justify-center" onPress={() => navigation.navigate("notifications")}>
                     <View className="p-3 rounded-full bg-white-100">
                         <Ionicons name="notifications-outline" size={28} color="black" />
                     </View>
                 </TouchableOpacity>
+
+                {/* Chat Icon (replacing QR Code Icon) */}
+                <Animated.View entering={BounceIn.duration(500)}>
+                    <TouchableOpacity className="items-center justify-center">
+                        <LinearGradient
+                            colors={['#D4D2E5', '#B8C6CC', '#E7DBF7', '#E6F7FF', '#E7E9FB']}
+                            locations={[0.09, 0.20, 0.51, 0.77, 0.90]}
+                            className="p-2 rounded-full"
+                            style={{ width: 50, height: 50, alignItems: 'center', justifyContent: 'center', borderRadius: 28 }}
+                        >
+                            <Ionicons name="chatbubble-ellipses-sharp" size={28} color="white" />
+
+                        </LinearGradient>
+                    </TouchableOpacity>
+                </Animated.View>
+
             </View>
 
 

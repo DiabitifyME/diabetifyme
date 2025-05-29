@@ -34,7 +34,8 @@ const AccountDataScreen = () => {
             <ScrollView className="flex-1 bg-white rounded-t-3xl mt-1 px-6 pt-14">
                 <View className="space-y-4">
                     {/* Export My Data */}
-                    <TouchableOpacity className="flex-row justify-between items-center bg-white-100 rounded-xl px-5 py-10 border border-violet-100 mb-6">
+                    <TouchableOpacity className="flex-row justify-between items-center bg-white-100 rounded-xl px-5 py-10 border border-violet-100 mb-6"
+                        onPress={() => navigation.navigate("DataExport")}>
                         <View>
                             <Text className="font-semibold text-base text-gray-900 bottom-6">Export my data</Text>
                             <Text className="text-xs text-gray-600 bottom-2 ">
@@ -45,7 +46,8 @@ const AccountDataScreen = () => {
                     </TouchableOpacity>
 
                     {/* Export My Data */}
-                    <TouchableOpacity className="flex-row justify-between items-center bg-white-100 rounded-xl px-5 py-10 border border-violet-100 mb-6">
+                    <TouchableOpacity className="flex-row justify-between items-center bg-white-100 rounded-xl px-5 py-10 border border-violet-100 mb-6"
+                        onPress={() => navigation.navigate("DeleteAccount")}>
                         <View>
                             <Text className="font-semibold text-base text-gray-900 bottom-6">Delete my account</Text>
                             <Text className="text-xs text-gray-600 bottom-2 ">

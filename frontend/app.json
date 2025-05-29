@@ -11,7 +11,20 @@
       "tsconfigPaths": true
     },
     "plugins": [
-      "@react-native-community/datetimepicker"
+      "@react-native-community/datetimepicker",
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow Diabetify Me to access your location to show nearby services."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "DiabetifyMe needs access to your photos to let you select a profile picture.",
+          "cameraPermission": "DiabetifyMe needs access to your camera to let you take profile pictures."
+        }
+      ]
     ],
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,13 +38,23 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "This app uses your location to show you nearby medical services.",
+        "NSLocationAlwaysUsageDescription": "We use your location to help you find nearby healthcare facilities."
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ],
       "package": "com.anonymous.myexpoapp"
     },
     "doctor": {

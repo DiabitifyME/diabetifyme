@@ -7,10 +7,11 @@ import {
     ScrollView,
     TextInput,
     SafeAreaView,
+    Alert,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { NavigationContainer } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
+import * as ImagePicker from 'expo-image-picker';
 
 const MyProfileScreen = () => {
     const navigation = useNavigation();
@@ -22,34 +23,85 @@ const MyProfileScreen = () => {
     const [height, setHeight] = useState("160cm");
     const [birthYear, setBirthYear] = useState("2003");
     const [referrer, setReferrer] = useState("96261c3***288c");
+    const [isModalVisible, setModalVisible] = useState(false);
+    const [image, setImage] = useState(require("../assets/images/martina.jpg"));
+
+    const takePhoto = async () => {
+        const { status } = await ImagePicker.requestCameraPermissionsAsync();
+
+        if (status !== 'granted') {
+            Alert.alert(
+                'Permission Needed',
+                'Please allow camera access to take photos',
+                [{ text: 'OK' }]
+            );
+            return;
+        }
+
+        const result = await ImagePicker.launchCameraAsync({
+            allowsEditing: true,
+            aspect: [1, 1],
+            quality: 1,
+        });
+
+        if (!result.canceled) {
+            setImage({ uri: result.assets[0].uri });
+        }
+    };
+
+    const pickImage = async () => {
+        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+        if (status !== 'granted') {
+            Alert.alert(
+                'Permission Needed',
+                'Please allow gallery access to select photos',
+                [{ text: 'OK' }]
+            );
+            return;
+        }
+
+        const result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [1, 1],
+            quality: 1,
+        });
+
+        if (!result.canceled) {
+            setImage({ uri: result.assets[0].uri });
+        }
+    };
 
     return (
         <SafeAreaView className="flex-1 bg-violet-100">
             <TouchableOpacity onPress={() => navigation.goBack()} className="mt-16 ml-6">
                 <Ionicons name="arrow-back" size={28} color="black" />
             </TouchableOpacity>
+
             {/* Profile Image */}
             <View className="items-end mr-6">
                 <View className="relative">
                     <Image
-                        source={require("../assets/images/martina.jpg")}
+                        source={image}
                         className="w-20 h-20 rounded-full border-2 border-white"
                     />
-                    <TouchableOpacity className="absolute bottom-0 right-0  bg-white rounded-full p-1 shadow">
+                    <TouchableOpacity
+                        className="absolute bottom-0 right-0 bg-white rounded-full p-1 shadow"
+                        onPress={() => setModalVisible(true)}
+                    >
                         <Ionicons name="camera" size={20} color="black" />
                     </TouchableOpacity>
                 </View>
             </View>
+
             {/* Header */}
             <View className="px-4 pb-4 flex-row items-center bg-violet-100">
-
                 <View className="ml-4">
                     <Text className="text-xl font-bold text-gray-900">My profile</Text>
                     <Text className="text-sm font-semibold text-gray-500">Add your information</Text>
                 </View>
             </View>
-
-
 
             {/* Scrollable Form */}
             <ScrollView
@@ -150,8 +202,36 @@ const MyProfileScreen = () => {
                         placeholder="Enter referrer code"
                     />
                 </TouchableOpacity>
-
             </ScrollView>
+
+            {/* Image Picker Modal */}
+            {isModalVisible && (
+                <View className="absolute bottom-0 left-0 right-0 bg-white rounded-t-2xl p-6 border border-gray-200 shadow-lg">
+                    <Text className="text-lg font-bold mb-4 text-gray-900">Change picture</Text>
+
+                    <TouchableOpacity
+                        className="flex-row items-center mb-4"
+                        onPress={() => {
+                            setModalVisible(false);
+                            takePhoto();
+                        }}
+                    >
+                        <Ionicons name="camera-outline" size={24} color="black" className="mr-2" />
+                        <Text className="text-base text-gray-800 ml-2">Take picture</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        className="flex-row items-center"
+                        onPress={() => {
+                            setModalVisible(false);
+                            pickImage();
+                        }}
+                    >
+                        <Ionicons name="image-outline" size={24} color="black" className="mr-2" />
+                        <Text className="text-base text-gray-800 ml-2">Choose from gallery</Text>
+                    </TouchableOpacity>
+                </View>
+            )}
         </SafeAreaView>
     );
 };
